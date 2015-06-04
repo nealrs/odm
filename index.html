@@ -86,15 +86,16 @@
     <ol id="dataList">
       <!--<li><a href="#URL">Name</a> (via Socrata)</li>-->
     </ol>
-    <p>Press the button again for more combinations.</p>
+    <!--<p>Press the button again for more combinations.</p>-->
   </div>
 
   <div class="footer">
-  info: {<br>
+  - - - - -  <br>
+  "credits" : {<br>
   &nbsp;&nbsp;"idea" : "<a href="http://twitter.com/fwdmedia">Richard Murby</a>",<br>
   &nbsp;&nbsp;"code" : "<a href="http://nealshyam.com">Neal Shyam</a>",<br>
-  &nbsp;&nbsp;"data" : "<a href="http://sjopendata.challengepost.com/details/resources">Open Data Mashup</a>",<br>
-  &nbsp;&nbsp;"source" : "<a href="github.com/nealrs/opendatamashup">http://github.com/nealrs/odm</a>"<br>
+  &nbsp;&nbsp;"data" : "<a href="http://sjopendata.challengepost.com/details/resources">Open Data Mashup Resources</a>",<br>
+  &nbsp;&nbsp;"source" : "<a href="http://github.com/nealrs/odm">github.com/nealrs/odm</a>"<br>
   }
   </div>
 
@@ -102,66 +103,6 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/jquery.multi-select.js" type="text/javascript"></script>
   <script src="js/data.js" type="text/javascript"></script>
-
-  <script type="text/javascript">
-    $('#selectData').multiSelect();
-    var winners =[]; // temp array for randomly selected datasets
-
-    /*$('#processData').click(function() {
-      mashup();
-    });*/
-
-    function mashup(){
-      $("#dataListContainer").show(); // unhide results box
-      clearList() // clear results list
-      winners =[]; // reset array
-      var list = []; // temp array for selected options
-
-      $("#selectData option:selected").each(function () {
-        var x = $(this);
-        if (x.length) {
-          list.push(x.text());
-          d = pickData( x.text());
-          winners.push(d);
-          writeToList(d);
-        }
-      });
-      console.log(winners);
-    }
-
-    // pick a dataset @ random that matches selected topic
-    function pickData(topic){
-      var list = [];
-      $.each(dataSets, function(i, v) {
-        if (v.topic == topic) {
-          list.push(i);
-        }
-      });
-
-      var rando = list[Math.floor(Math.random()*list.length)];
-      console.log(list);
-      return rando;
-    }
-
-    function writeToList(n){
-      $.each(dataSets, function(i, v) {
-        if (i == n) {
-          var li = document.createElement("li");
-          var lin = document.createTextNode("");
-          li.innerHTML = "<a href=\""+v.url+"\">"+n+"</a> <span class=\"source\">("+v.provider+")<span>";
-          li.appendChild(lin);
-          document.getElementById("dataList").appendChild(li);
-        }
-      });
-    }
-
-    function clearList(){
-      var l = document.getElementById("dataList");
-      while (l.firstChild) {
-        l.removeChild(l.firstChild);
-      }
-    }
-
-  </script>
+  <script src="js/script.js" type="text/javascript"></script>
 </body>
 </html>
