@@ -1,0 +1,167 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Open Data Mashup Machine | ChallengePost Summer Jam</title>
+  <meta name="description" content="Find data sets to use in your Summer Jam project.">
+  <meta name="author" content="Neal Shyam">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Roboto:400,400italic,500|Roboto+Condensed' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="css/multi-select.css" media="screen" rel="stylesheet" type="text/css">
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+<h3>Select several data categories:</h3>
+  <select multiple="multiple" id="selectData">
+    <option value='t1'>311 Services</option>
+    <option value='t2'>Adopted Budget &amp; Expenditures</option>
+    <option value='t3'>Agriculture</option>
+    <option value='t4'>Aid Effectiveness</option>
+    <option value='t5'>Environment</option>
+    <option value='t6'>Biology</option>
+    <option value='t7'>Business</option>
+    <option value='t8'>Campaign finance</option>
+    <option value='t9'>City Payroll</option>
+    <option value='t10'>Climate</option>
+    <option value='t11'>Complex Networks</option>
+    <option value='t12'>Computer Networks</option>
+    <option value='t13'>Crime</option>
+    <option value='t14'>Data Challenges</option>
+    <option value='t15'>Economics</option>
+    <option value='t16'>Education</option>
+    <option value='t17'>Emergency Shelter / Evacuation</option>
+    <option value='t18'>Energy</option>
+    <option value='t19'>Finance</option>
+    <option value='t20'>Farmer's Markets</option>
+    <option value='t21'>Gender</option>
+    <option value='t22'>Geology</option>
+    <option value='t23'>GeoSpace / GIS</option>
+    <option value='t24'>Global Development</option>
+    <option value='t25'>Government Data Portals</option>
+    <option value='t26'>Government spending</option>
+    <option value='t27'>Health / Healthcare</option>
+    <option value='t28'>Image Processing</option>
+    <option value='t29'>Infrastructure</option>
+    <option value='t30'>Labor</option>
+    <option value='t31'>Legislation</option>
+    <option value='t32'>Machine Learning</option>
+    <option value='t33'>Museums</option>
+    <option value='t34'>Natural Language</option>
+    <option value='t35'>Parks &amp; Public Facilities</option>
+    <option value='t36'>Permits &amp; Licenses</option>
+    <option value='t37'>Physics</option>
+    <option value='t38'>Police &amp; Fire</option>
+    <option value='t39'>Poverty</option>
+    <option value='t40'>Private Sector</option>
+    <option value='t41'>Psycology</option>
+    <option value='t42'>Public Sector</option>
+    <option value='t43'>Random</option>
+    <option value='t44'>Social Sciences</option>
+    <option value='t45'>Sports</option>
+    <option value='t46'>Trade</option>
+    <option value='t47'>Transportation</option>
+    <option value='t48'>Unemployment</option>
+    <option value='t49'>Urban Development</option>
+    <option value='t50'>World Bank Group Projects &amp; Finances</option>
+  </select>
+  <br>
+  <!--<h3>All set?</h3>-->
+  <!--<button type="button" id="processData">Mash it up!</button>-->
+  <div>
+    <br>
+    <a href="javascript:mashup();" class="btn-push red">Mash &lsquo;em up!</a>
+  </div>
+  <br>
+
+  <div id = "dataListContainer">
+    <h3>Try these open data sets:</h3>
+    <ol id="dataList">
+      <!--<li><a href="#URL">Name</a> (via Socrata)</li>-->
+    </ol>
+    <p>Press the button again for more combinations.</p>
+  </div>
+
+  <div class="footer">
+  info: {<br>
+  &nbsp;&nbsp;"idea" : "<a href="http://twitter.com/fwdmedia">Richard Murby</a>",<br>
+  &nbsp;&nbsp;"code" : "<a href="http://nealshyam.com">Neal Shyam</a>",<br>
+  &nbsp;&nbsp;"data" : "<a href="http://sjopendata.challengepost.com/details/resources">Open Data Mashup</a>",<br>
+  &nbsp;&nbsp;"source" : "<a href="github.com/nealrs/opendatamashup">http://github.com/nealrs/odm</a>"<br>
+  }
+  </div>
+
+  <!-- JaVAVAVAVAVaScript -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/jquery.multi-select.js" type="text/javascript"></script>
+  <script src="js/data.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    $('#selectData').multiSelect();
+    var winners =[]; // temp array for randomly selected datasets
+
+    /*$('#processData').click(function() {
+      mashup();
+    });*/
+
+    function mashup(){
+      $("#dataListContainer").show(); // unhide results box
+      clearList() // clear results list
+      winners =[]; // reset array
+      var list = []; // temp array for selected options
+
+      $("#selectData option:selected").each(function () {
+        var x = $(this);
+        if (x.length) {
+          list.push(x.text());
+          d = pickData( x.text());
+          winners.push(d);
+          writeToList(d);
+        }
+      });
+      console.log(winners);
+    }
+
+    // pick a dataset @ random that matches selected topic
+    function pickData(topic){
+      var list = [];
+      $.each(dataSets, function(i, v) {
+        if (v.topic == topic) {
+          list.push(i);
+        }
+      });
+
+      var rando = list[Math.floor(Math.random()*list.length)];
+      console.log(list);
+      return rando;
+    }
+
+    function writeToList(n){
+      $.each(dataSets, function(i, v) {
+        if (i == n) {
+          var li = document.createElement("li");
+          var lin = document.createTextNode("");
+          li.innerHTML = "<a href=\""+v.url+"\">"+n+"</a> <span class=\"source\">("+v.provider+")<span>";
+          li.appendChild(lin);
+          document.getElementById("dataList").appendChild(li);
+        }
+      });
+    }
+
+    function clearList(){
+      var l = document.getElementById("dataList");
+      while (l.firstChild) {
+        l.removeChild(l.firstChild);
+      }
+    }
+
+  </script>
+</body>
+</html>

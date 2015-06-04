@@ -1,0 +1,107 @@
+body{
+  width:80%;margin:auto;
+  font-family: 'Roboto', sans-serif;
+  color: #111111;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Slab', serif;
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {color: #FF4136;}
+a:active, a:hover {color: #FF851B;}
+/*a:visited {color: #85144B;}*/
+
+.source{
+  font-size: smaller;
+  color: #AAAAAA;
+}
+
+#dataListContainer{
+  display:none;
+}
+
+.footer{
+  width:auto;
+  margin-top:1em;
+
+}
+
+/*clickable CSS buttons from: http://codepen.io/cssjockey/pen/onpFd*/
+
+/*==========  Structure  ==========*/
+.btn-push {
+  position: relative;
+  top: 0px;
+  font-family: "Open Sans";
+  text-decoration: none;
+  font-size: 25px;
+  background: #f7f7f7;
+  padding: 15px 50px;
+  margin: 0;
+  border: 1px solid #c4c4c4;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 0px #c4c4c4;
+  -moz-box-shadow: 0px 5px 0px #c4c4c4;
+  -ms-box-shadow: 0px 5px 0px #c4c4c4;
+  -o-box-shadow: 0px 5px 0px #c4c4c4;
+  box-shadow: 0px 5px 0px #c4c4c4;
+  color: #222;
+  text-shadow: 1px 1px 1px #fff;
+  -webkit-transition: All 250ms ease;
+  -moz-transition: All 250ms ease;
+  -o-transition: All 250ms ease;
+  -ms-transition: All 250ms ease;
+  transition: All 250ms ease;
+}
+/*==========  Active State  ==========*/
+.btn-push:active {
+  position: relative;
+  top: 5px;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-transition: All 250ms ease;
+  -moz-transition: All 250ms ease;
+  -o-transition: All 250ms ease;
+  -ms-transition: All 250ms ease;
+  transition: All 250ms ease;
+}
+/*==========  Navy  ==========*/
+.btn-push.navy {
+  background: #1b486d;
+  border: 1px solid #07121b;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 0px #07121b;
+  -moz-box-shadow: 0px 5px 0px #07121b;
+  -ms-box-shadow: 0px 5px 0px #07121b;
+  -o-box-shadow: 0px 5px 0px #07121b;
+  box-shadow: 0px 5px 0px #07121b;
+  color: #fff;
+  text-shadow: 1px 1px 1px #07121b;
+}
+
+/*==========  Red  ==========*/
+.btn-push.red {
+  background: #df4242;
+  color: #fff;
+  border: 1px solid #a01b1b;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 5px 0px #a01b1b;
+  -moz-box-shadow: 0px 5px 0px #a01b1b;
+  -ms-box-shadow: 0px 5px 0px #a01b1b;
+  -o-box-shadow: 0px 5px 0px #a01b1b;
+  box-shadow: 0px 5px 0px #a01b1b;
+  text-shadow: 1px 1px 1px #a01b1b;
